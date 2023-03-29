@@ -30,4 +30,5 @@ yarn-error.log*
 **.db
 node_modules
 
-
+compose/secrets
+compose/backend/fxp/wallets
