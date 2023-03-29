@@ -1,0 +1,22 @@
+{
+  "$id": "icebreaker/response-error-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Error",
+  "description": "Output body for any given error",
+  "type": "object",
+  "properties": {
+    "paymentId": {
+      "type": "string",
+      "format" : "uuid",
+      "description": "Unique identifier of the payment"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Error code"
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$id": "icebreaker/response-discovery-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payment discovery",
+  "description": "Output body for POST /discovery",
+  "type": "object",
+  "properties": {
+    "hashOfSecret": {
+      "type": "string",
+      "description": "Hash of the secret",
+      "format": "SHA256"
+    },
+    "lockMaxDuration": {
+      "type": "integer",
+      "description": "Maximum lock duration in milliseconds for receiving system"
+    },
+    "paymentId": {
+      "type": "string",
+      "format" : "uuid",
+      "description": "Unique identifier of the payment"
+    }
+  },
+  "required": [
+    "hashOfSecret",
+    "lockMaxDuration",
+    "paymentId"
+  ]
+}

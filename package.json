@@ -1,0 +1,57 @@
+{
+  "name": "cbdc-sandbox-cross-border-frontend",
+  "author": "Norwegian Block Exchange AS",
+  "version": "0.1.0",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.5.3",
+    "@mui/material": "^5.5.3",
+    "@mui/x-data-grid": "^5.9.0",
+    "base-64": "^1.0.0",
+    "classnames": "^2.3.1",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.6.4",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hooks-global-state": "^1.0.2",
+    "react-intl": "^5.25.1",
+    "react-material-file-upload": "^0.0.4",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-router-dom": "^6.2.2",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^8.2.0",
+    "sass": "^1.49.11",
+    "simplebar-react": "^2.3.6",
+    "styled-components": "^5.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

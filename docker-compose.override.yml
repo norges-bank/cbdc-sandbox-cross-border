@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  nginx:
+    build:
+      context: ./compose/nginx
+    ports:
+      - "8080:80"
+      - "80:80"
+    restart: always
+    environment:
+      - FRONTEND_URL=
+      - FXP1_URL=
+      - FXP2_URL=
+      - PSP_URL=
+      - HUB_URL=
+      - JSON_RPC_PROVIDER_URL=
+      - BLOCKSCOUT_URL=
+    secrets:
+      - rpc_header
+
+  hub:
+    build:
+      context: ./compose/backend/hub
+      dockerfile: hub.Dockerfile
+    environment:
+      - PORT=
+      - IS_PVPVP_ENABLED=
+      - NO_NOK_HOST=
+      - NO_FXP1_HOST=
+      - NO_FXP1_HOST_NAME=
+      - NO_FXP1_WALLET_ADDRESS=
+      - NO_FXP2_HOST=
+      - NO_FXP2_HOST_NAME=
+      - NO_FXP2_WALLET_ADDRESS=
+      - IL_FXP1_HOST_NAME=
+      - SE_FXP1_HOST_NAME=
+      - HUB_REQUEST_HEADER=
+      - HUB_RESPONSE_HEADER=
+    command: node hub_api.js
+    restart: always

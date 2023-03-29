@@ -1,0 +1,43 @@
+{
+  "$id": "icebreaker/request-quote-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Get quote input",
+  "description": "Input body for POST /quote",
+  "type": "object",
+  "properties": {
+    "sourceCurrency": {
+      "type": "string",
+      "description": "Source currency code",
+      "format": "ISO 4217"
+    },
+    "targetCurrency": {
+      "type": "string",
+      "description": "target currency code",
+      "format": "ISO 4217"
+    },
+    "sourceAmount": {
+      "type": "number",
+      "description": "Amount in source currency"
+    },
+    "targetAmount": {
+      "type": "number",
+      "description": "Amount in target currency"
+    }
+  },
+  "required": [
+    "sourceCurrency",
+    "targetCurrency"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "sourceAmount"
+      ]
+    },
+    {
+      "required": [
+        "targetAmount"
+      ]
+    }
+  ]
+}

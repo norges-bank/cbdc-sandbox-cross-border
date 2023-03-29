@@ -1,0 +1,123 @@
+{
+  "$id": "icebreaker/request-completion-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payment completion",
+  "description": "Input body for POST /completion",
+  "type": "object",
+  "properties": {
+    "paymentInstruction": {
+      "$ref": "#/$defs/PaymentInstruction",
+      "description": "Payment instruction"
+    },
+    "secret": {
+      "type": "string",
+      "description": "Secret for unlocking the payment"
+    }
+  },
+  "$defs": {
+    "PaymentInstruction": {
+      "type": "object",
+      "properties": {
+        "quoteId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the quote"
+        },
+        "rate": {
+          "type": "number",
+          "description": "Exchange rate from source to target currency"
+        },
+        "sourceCurrency": {
+          "type": "string",
+          "description": "Source currency code",
+          "format": "ISO 4217"
+        },
+        "intermediateCurrency": {
+          "type": "string",
+          "description": "Intermediate currency code",
+          "format": "ISO 4217"
+        },
+        "targetCurrency": {
+          "type": "string",
+          "description": "Target currency code",
+          "format": "ISO 4217"
+        },
+        "sourceAmount": {
+          "type": "number",
+          "description": "Amount to source currency"
+        },
+        "intermediateAmount": {
+          "type": "number",
+          "description": "Amount in intermediate currency"
+        },
+        "targetAmount": {
+          "type": "number",
+          "description": "Amount to target currency"
+        },
+        "sender": {
+          "$ref": "#/$defs/Wallet",
+          "description": "Sender wallet address"
+        },
+        "senderSystemFx": {
+          "$ref": "#/$defs/Wallet",
+          "description": "FX provider wallet using source currency, receiving payment from sender"
+        },
+        "intermediateSenderFx": {
+          "$ref": "#/$defs/Wallet",
+          "description": "FX provider wallet using intermediate currency, making payment to another FX provider"
+        },
+        "intermediateRecipientFx": {
+          "$ref": "#/$defs/Wallet",
+          "description": "FX provider wallet using intermediate currency, receiving payment from another FX provider"
+        },
+        "recipientSystemFx": {
+          "$ref": "#/$defs/Wallet",
+          "description": "FX provider wallet using target currency, making payment to recipient"
+        },
+        "recipient": {
+          "$ref": "#/$defs/Wallet",
+          "description": "Recipient wallet address"
+        },
+        "paymentId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the payment"
+        }
+      },
+      "required": [
+        "rate",
+        "quoteId",
+        "sourceCurrency",
+        "targetCurrency",
+        "sourceAmount",
+        "targetAmount",
+        "sender",
+        "senderSystemFx",
+        "recipientSystemFx",
+        "recipient",
+        "paymentId"
+      ]
+    },
+    "Wallet": {
+      "type": "object",
+      "properties": {
+        "walletAddress": {
+          "type": "string",
+          "description": "Wallet address/identifier/name"
+        },
+        "host": {
+          "type": "string",
+          "description": "This is the string, which hub can map into IP address, for example country+PSP"
+        }
+      },
+      "required": [
+        "walletAddress",
+        "host"
+      ]
+    }
+  },
+  "required": [
+    "paymentInstruction",
+    "secret"
+  ]
+}

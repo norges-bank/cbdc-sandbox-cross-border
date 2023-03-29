@@ -1,0 +1,17 @@
+{
+  "$id": "icebreaker/response-completion-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payment completion",
+  "description": "Output body for POST /completion",
+  "type": "object",
+  "properties": {
+    "paymentId": {
+      "type": "string",
+      "format" : "uuid",
+      "description": "Unique identifier of the payment"
+    }
+  },
+  "required": [
+    "paymentId"
+  ]
+}

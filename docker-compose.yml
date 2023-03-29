@@ -1,0 +1,89 @@
+version: "3.7"
+
+services:
+
+  frontend:
+    build:
+      context: ./compose/frontend
+    environment:
+      - REACT_APP_HUB_REQUEST_HEADER=
+      - REACT_APP_HTLC_CONTRACT_ADDRESS=
+      - REACT_APP_SENDER_HOST=
+    volumes:
+      - .:/app
+    restart: always
+
+  fxp1:
+    build:
+      context: ./compose/backend/fxp
+      dockerfile: fxp.Dockerfile
+    environment:
+      - PORT=
+      - FXP_ID=
+      - FXP_BASE_URL=
+      - HUB_URL=
+      - HUB_REQUEST_HEADER=
+      - FX_API_BASE_URL=
+      - JSON_RPC_PROVIDER_URL=
+      - HTLC_CONTRACT_ADDRESS=
+    volumes:
+      - ./compose/backend/fxp/db/fxp1:/app/db
+      - ./compose/lockDuration.txt:/app/lockDuration.txt
+    secrets:
+      - rpc_user
+      - rpc_password
+      - fxp1_wallet_password
+    command: node fxp_api.js
+    restart: always
+
+  fxp2:
+    build:
+      context: ./compose/backend/fxp
+      dockerfile: fxp.Dockerfile
+    environment:
+      - PORT=
+      - FXP_ID=
+      - FXP_BASE_URL=
+      - HUB_URL=
+      - HUB_REQUEST_HEADER=
+      - FX_API_BASE_URL=
+      - JSON_RPC_PROVIDER_URL=
+      - HTLC_CONTRACT_ADDRESS=
+    volumes:
+      - ./compose/backend/fxp/db/fxp2:/app/db
+      - ./compose/lockDuration.txt:/app/lockDuration.txt
+    secrets:
+      - rpc_user
+      - rpc_password
+      - fxp2_wallet_password
+    command: node fxp_api.js
+    restart: always
+
+  psp:
+    build:
+      context: ./compose/backend/psp
+      dockerfile: psp.Dockerfile
+    environment:
+      - PORT=
+      - JSON_RPC_PROVIDER_URL=
+      - HTLC_CONTRACT_ADDRESS=
+    volumes:
+      - ./compose/backend/psp/db:/app/db
+      - ./compose/lockDuration.txt:/app/lockDuration.txt
+    secrets:
+      - rpc_user
+      - rpc_password
+    command: node psp_api.js
+    restart: always
+
+secrets:
+  rpc_user:
+    file: ./compose/secrets/rpc_user.txt
+  rpc_password:
+    file: ./compose/secrets/rpc_password.txt
+  rpc_header:
+    file: ./compose/secrets/rpc_header.txt
+  fxp1_wallet_password:
+    file: ./compose/secrets/fxp1_wallet_password.txt
+  fxp2_wallet_password:
+    file: ./compose/secrets/fxp2_wallet_password.txt

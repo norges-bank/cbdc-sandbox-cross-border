@@ -1,0 +1,17 @@
+{
+  "$id": "icebreaker/response-setup-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Payment setup",
+  "description": "Output body for POST /setup",
+  "type": "object",
+  "properties": {
+    "paymentId": {
+      "type": "string",
+      "format" : "uuid",
+      "description": "Unique identifier of the payment"
+    }
+  },
+  "required": [
+    "paymentId"
+  ]
+}

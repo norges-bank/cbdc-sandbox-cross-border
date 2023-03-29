@@ -1,0 +1,22 @@
+{
+  "scripts": {},
+  "name": "cbdc-sandbox-cross-border-fxp",
+  "version": "1.0.0",
+  "description": "foreign exchange provider",
+  "author": "Norwegian Block Exchange AS",
+  "license": "GPL-3.0",
+  "type": "module",
+  "dependencies": {
+    "ajv": "^8.11.2",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.1.3",
+    "currency-codes": "^2.1.0",
+    "ethers": "^5.7.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "morgan": "^1.10.0",
+    "set-interval-async": "^3.0.2",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.2"
+  }
+}
